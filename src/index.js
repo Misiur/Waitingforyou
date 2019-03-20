@@ -28,6 +28,8 @@ async function main() {
         parent.body = item;
       } else if (parent.type === 'VariableDeclarator') {
         parent.init = item;
+      } else if (parent.type === 'AssignmentExpression') {
+        parent.right = item;
       } else if (parent.type === 'TemplateLiteral') {
         parent.expressions.splice(parent.expressions.indexOf(node), 1, item);
       }
