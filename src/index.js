@@ -16,7 +16,7 @@ async function main() {
   walk.fullAncestor(tree, (node, ancestors) => {
     if (node.type === 'Program') return;
     const parent = ancestors[ancestors.length - 2];
-    if ((node.type === 'CallExpression' || node.type === 'MemberExpression') && parent.type !== 'AwaitExpression') {
+    if (node.type === 'CallExpression' && parent.type !== 'AwaitExpression') {
       const item = {
         type: 'AwaitExpression',
         argument: node,
@@ -28,6 +28,8 @@ async function main() {
         parent.body = item;
       } else if (parent.type === 'VariableDeclarator') {
         parent.init = item;
+      } else if (parent.type === 'MemberExpression') {
+        parent.property = item;
       } else if (parent.type === 'AssignmentExpression') {
         parent.right = item;
       } else if (parent.type === 'TemplateLiteral') {
