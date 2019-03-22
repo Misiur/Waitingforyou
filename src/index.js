@@ -29,7 +29,8 @@ async function main() {
       } else if (parent.type === 'VariableDeclarator') {
         parent.init = item;
       } else if (parent.type === 'MemberExpression') {
-        parent.property = item;
+        if (parent.property === node) parent.property = item;
+        else if (parent.object === node) parent.object = item;
       } else if (parent.type === 'AssignmentExpression') {
         parent.right = item;
       } else if (parent.type === 'TemplateLiteral') {
