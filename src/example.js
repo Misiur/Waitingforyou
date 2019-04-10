@@ -22,11 +22,15 @@ async function Callback() {
     console.log('Hai');
   }
 
-  [123, 321].map(el => console.log(el));
+  [123, 321].map(el => console.log(el, andACall()));
 
   const sum = async () => {
     console.log('WAA');
   };
 
   nestedSomething();
+
+  for (const b of Foo()) {
+    console.log(b);
+  }
 }

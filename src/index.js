@@ -37,6 +37,9 @@ async function main() {
         parent.arguments.splice(parent.arguments.indexOf(node), 1, item);
       } else if (parent.type === 'TemplateLiteral') {
         parent.expressions.splice(parent.expressions.indexOf(node), 1, item);
+      } else if (parent.type === 'ForOfStatement') {
+        // It will never be the left node
+        parent.right = item;
       }
     }
 
