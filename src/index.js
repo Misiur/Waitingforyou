@@ -40,6 +40,11 @@ async function main() {
       } else if (parent.type === 'ForOfStatement') {
         // It will never be the left node
         parent.right = item;
+      } else if (parent.type === 'UnaryExpression') {
+        parent.argument = item
+      } else if (parent.type === 'LogicalExpression') {
+        if (parent.left === node) parent.left = item
+        if (parent.right === node) parent.right = item
       }
     }
 

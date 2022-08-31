@@ -33,4 +33,8 @@ async function Callback() {
   for (const b of Foo()) {
     console.log(b);
   }
+
+  if (nestedSomething() && !Callback()) {
+    console.log('Test');
+  }
 }
